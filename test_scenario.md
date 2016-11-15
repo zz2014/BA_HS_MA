@@ -12,7 +12,7 @@
 	- Dependent variables: Response time for a request
 
 - Inspect:
-		- Can application maintain a certain response time as the number of requests per second scale by varying the number of instance in CF?
+	- Can application maintain a certain response time as the number of requests per second scale by varying the number of instance in CF?
 
 	**ALSO:** Change the dependent variable and scaling dimension, like with fixed number of instances, how many requests can be handled.
 
