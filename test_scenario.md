@@ -4,7 +4,7 @@
 	- [ApacheBench](http://httpd.apache.org/docs/2.4/programs/ab.html) 
 	- [LoadRunner](http://www8.hp.com/us/en/software-solutions/loadrunner-load-testing/)			
 
-- Parameters: (reference from [this] (reference/AnalysisOfSoftwareSystemscalability.md))
+- Parameters: (reference from [this] (reference/AnalysisOfSoftwareSystemscalability.pdf))
 	- Scaling dimensions: 
 		- Number of requests per second
 		- Number of instances in CF
