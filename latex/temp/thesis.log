@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  10 NOV 2016 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  27 NOV 2016 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1369,7 +1369,7 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 \bindekorrektur=\skip71
 \seitenanfang=\skip72
 \seitenbreite=\skip73
- <bilder/hsma-logo.pdf, id=24, 642.4pt x 177.66376pt>
+ <bilder/hsma-logo.pdf, id=156, 642.4pt x 177.66376pt>
 File: bilder/hsma-logo.pdf Graphic file (type pdf)
 
 <use bilder/hsma-logo.pdf>
@@ -1475,18 +1475,29 @@ and I'll forget about whatever was undefined.
 
 
 
-] (../temp/thesis.toc)
+] (../temp/thesis.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [3
+
+
+
+
+])
 \tf@toc=\write6
 \openout6 = `thesis.toc'.
 
- [3
-
-
-
-
-]
+ [4]
 \c@frontmatterpage=\count191
- (./kapitel1.tex
+
+(./kapitel1.tex
 chapter 1.
 [1
 
@@ -1494,15 +1505,178 @@ chapter 1.
 
 
 
-])
+]) (./kapitel2.tex
 Overfull \vbox (1.76944pt too high) has occurred while \output is active []
 
 
-[2] (../temp/thesis.lot)
+[2]
+chapter 2.
+) (./kapitel3.tex [3
+
+
+]
+chapter 3.
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.3 \subsection{Cloud Foundry at SAP}
+                                     
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.4 ...- Service plans, Backing services and more}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.5 \subsection{Limitations}
+                            
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.7 \subsection{Influential factors for measuring}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.8 \subsection{Client in local machine}
+                                        
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.9 \subsection{Client in Cloud Foundry}
+                                        
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.10 \subsection{Client in Monsoon}
+                                   
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+) (./kapitel4.tex [4
+
+
+]
+chapter 4.
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.3 \subsection{JMeter introduction}
+                                    
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.4 \subsection{JMeter Limitations}
+                                   
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.6 ...tion{Design and function of load generator}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.7 \subsection{Limitations}
+                            
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+) (./kapitel5.tex [5
+
+
+]
+chapter 5.
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.3 \subsection{Apache JMeter and its limitations}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.4 ...ng with Load Generator and its limitations}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.5 ...trieving data from ELK and its limitations}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.7 ...tion{Cloud Foundry CLI and its limitations}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+! Missing \endcsname inserted.
+<to be read again> 
+                   \numexpr 
+l.8 ...nted  Ruby application and its limitations}
+                                                  
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+) (./kapitel6.tex [6
+
+
+]
+chapter 6.
+) (./kapitel7.tex [7
+
+
+]
+chapter 7.
+) (./kapitel8.tex [8
+
+
+]
+chapter 8.
+) [9
+
+
+] (../temp/thesis.lot)
 \tf@lot=\write7
 \openout7 = `thesis.lot'.
 
- [4
+ [5
 
 
 
@@ -1513,7 +1687,7 @@ Overfull \vbox (1.76944pt too high) has occurred while \output is active []
 \tf@lof=\write8
 \openout8 = `thesis.lof'.
 
- [5
+ [6
 
 
 
@@ -1530,7 +1704,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 \end{flushleft}
+l.85 \end{flushleft}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1539,21 +1713,21 @@ or  <return>  to continue without it.
 ! Extra \endgroup.
 <recently read> \endgroup 
                           
-l.80 \end{flushleft}
+l.85 \end{flushleft}
                     
 Things are pretty mixed up, but I think the worst is over.
 
-[6
+[7
 
 
 
 
 ] (../temp/thesis.ind)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 93.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 93.
  (../temp/thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 88.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 88.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 93.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 93.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 
@@ -1562,23 +1736,23 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 21667 strings out of 493014
- 367433 string characters out of 6133351
- 549983 words of memory out of 5000000
- 24892 multiletter control sequences out of 15000+600000
- 42115 words of font info for 42 fonts, out of 8000000 for 9000
+ 21835 strings out of 493014
+ 369786 string characters out of 6133351
+ 554983 words of memory out of 5000000
+ 24979 multiletter control sequences out of 15000+600000
+ 46462 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 49i,8n,66p,10491b,375s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 49i,8n,66p,10491b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/
 2016/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/local/texlive/2016/t
 exmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2016/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb>
-Output written on ../temp/thesis.pdf (10 pages, 66184 bytes).
+Output written on ../temp/thesis.pdf (18 pages, 80634 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 96 compressed objects within 1 object stream
- 22 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 359 PDF objects out of 1000 (max. 8388607)
+ 328 compressed objects within 4 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 310 words of extra memory for PDF output out of 10000 (max. 10000000)
 
