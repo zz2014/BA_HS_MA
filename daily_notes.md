@@ -6,21 +6,21 @@
 - Plain DB connection: `JDBC`
 
 **Done:**
-- JDBC connection to PostgreSQL
-- `AdvertisementResource`: getAll, getOne
-- `AdvertisementRepository`: selectAll, selectOne
-- `AdvertisementHandler`: getAll
+- [x] JDBC connection to PostgreSQL
+- [x] `AdvertisementResource`: getAll, getOne
+- [x] `AdvertisementRepository`: selectAll, selectOne
+- [x] `AdvertisementHandler`: getAll
 
 ### 16.11.2016
-**Plan:**
-- Use Java 8 
-- `AdvertisementRepository` 
+**TODO:**
+- [x] Use Java 8 
+- [x] `AdvertisementRepository` 
   - add insertOne + create table if not exist
   - delete all/ drop table
-- add logic inside app: init database
-- Test with setup/teardown
-- Use env variable to access DB
-- try to push to CF
+- [x] add logic inside app: init database
+- [x] Test with setup/teardown
+- [x] Use env variable to access DB
+- [x] try to push to CF
  
 **DONE:**
 - Use Java 8 
@@ -42,8 +42,8 @@
 
 ### 17.11.2016
 **Plan**
-- Use env variable to access DB
-- try to push to CF
+- [x] Use env variable to access DB
+- [x] try to push to CF
 
 **Done**
 - improve exception handling
@@ -58,8 +58,8 @@
 
 ### 18.11.2016
 **Plan**
-- Push to CF
-- Start performance testing
+- [x] Push to CF
+- [x] Start performance testing
 
 **Done**
 - Push to CF
@@ -75,14 +75,14 @@ Review:
 - CPU and memory consumption is hard to measure as for Java, the JProfiler or JMX should first be used to optimize the hardware configuration.
 
 **TODO**
-- Simulate load with enduser simulator as application pushed in CF.
+- [x] Simulate load with enduser simulator as application pushed in CF.
   - use getAll: DB will be kept small as the DB efficiency is not to be discussed in the research.
   - calculate response time inside the application
-- Get the logs from router in ELK
+- [x] Get the logs from router in ELK
   - filter: space id, org id, raw app name, time period
   - contact Kibana colleagues for information
-- Optimize application configuration with JProfiler
-- Log cpu and memory
+- [ ] Optimize application configuration with JProfiler
+- [ ] Log cpu and memory
   - maybe with the ruby script?
 **Done**
 - Simulate load with enduser simulator as application pushed in CF.
@@ -98,9 +98,9 @@ Review:
 - DB in CF cannot be accessed directly.
 
 **TODO**
-- use pool in load generator
-- save response time not after every request
-- use chisel to access DB in cf
+- [x] use pool in load generator
+- [x] save response time not after every request
+- [x] use chisel to access DB in cf
 
 **Done**
 - use pool in load generator
@@ -116,9 +116,9 @@ Review:
 - logstash response time seems extemely fast.
 
 **TODO**
-- observe the ELK results
-- try to use docker(alpine) and curl to generate load
-- still have to find out how to record memory-cpu
+- [x] observe the ELK results
+- [ ] try to use docker(alpine) and curl to generate load
+- [ ] still have to find out how to record memory-cpu
 
 **DONE**
 - write a script to push load generator with parameters
@@ -127,5 +127,20 @@ Review:
   - curiously there are two logs: meaning two load balancers/ routers
 - connected to chisel
   - easy access with toad extension
-  - **TODO: ** connect to DB from excel 
+  - [ ] **TODO: ** connect to DB from excel 
 
+### 29.11.2016
+**TODO**
+- [x] observe the ELK results
+**DONE**
+- Application queries logstash from ELK
+**BUT**
+- Logs are not complete investigate into the reasons
+- [x] load generator sends a fixed number of requests
+
+### 30.11.2016
+**TODO**
+- [x] ELK loses logs or what?
+**DONE**
+- ELK doesn't save all the logs. Jens has inquired the logstash colleagues. It turns out there are different quotas for logs: per second and per day. In oder to get all the logs, we might need to use dev landscape. But first we have to be sure, what kind of quota is enough in our cases. 
+- [ ] **TODO** find out the limit of java application. 

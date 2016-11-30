@@ -34,6 +34,6 @@
 \contentsline {section}{\numberline {7.1}IO Intensive}{8}{section.7.1}
 \contentsline {section}{\numberline {7.2}Compute Intensive}{8}{section.7.2}
 \contentsline {chapter}{\numberline {8}Conclusion}{9}{chapter.8}
-\contentsline {chapter}{Tabellenverzeichnis}{v}{section*.5}
-\contentsline {chapter}{Abbildungsverzeichnis}{vi}{section*.7}
-\contentsline {chapter}{Quellcodeverzeichnis}{vii}{section*.9}
+\contentsline {chapter}{List of Tables}{v}{section*.5}
+\contentsline {chapter}{List of Figures}{vi}{section*.7}
+\contentsline {chapter}{Source references}{vii}{section*.9}
