@@ -37,8 +37,7 @@
 - Test with setup/teardown
   - only setup
 - Use env variable to access DB
-  - **TODO**
-- try to push to CF
+  - **TODO** try to push to CF
 
 ### 17.11.2016
 **Plan**
@@ -54,7 +53,6 @@
     - works locally
     - can't push to CF, strange error by javax directory
     - exclude javax dependency, error went away but javax is needed in jetty
-  - **TODO**
 
 ### 18.11.2016
 **Plan**
@@ -84,6 +82,7 @@ Review:
 - [ ] Optimize application configuration with JProfiler
 - [ ] Log cpu and memory
   - maybe with the ruby script?
+  
 **Done**
 - Simulate load with enduser simulator as application pushed in CF.
   - Simulator is written to generate load with given parallel request number and load generate period
@@ -132,8 +131,10 @@ Review:
 ### 29.11.2016
 **TODO**
 - [x] observe the ELK results
+
 **DONE**
 - Application queries logstash from ELK
+
 **BUT**
 - Logs are not complete investigate into the reasons
 - [x] load generator sends a fixed number of requests
@@ -141,6 +142,7 @@ Review:
 ### 30.11.2016
 **TODO**
 - [x] ELK loses logs or what?
+
 **DONE**
 - ELK doesn't save all the logs. Jens has inquired the logstash colleagues. It turns out there are different quotas for logs: per second and per day. In oder to get all the logs, we might need to use dev landscape. But first we have to be sure, what kind of quota is enough in our cases. 
 - [ ] **TODO** find out the limit of java application. 
