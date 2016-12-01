@@ -5,7 +5,7 @@ Machine Learning Scenario
   - Node.js has also some implementations
 - Algorithm can be simple but huge data has to be handles. e.g. 1 million rows, 1 thousand rows.
 - If testing, use public data center
-- Supervised training and unsupervised training. see here [references/ml.pdf]
+- Supervised training and unsupervised training. see here [references/ML_pseudocode.pdf]
   - Supervised training: 
     - number of epochs and number of batches decide number of loops. Iterate through data is expensive. Therefore if data size number of epoch is large, it is slow. 
   - Unsupervised training:
