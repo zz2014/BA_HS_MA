@@ -146,3 +146,17 @@ Review:
 **DONE**
 - ELK doesn't save all the logs. Jens has inquired the logstash colleagues. It turns out there are different quotas for logs: per second and per day. In oder to get all the logs, we might need to use dev landscape. But first we have to be sure, what kind of quota is enough in our cases. 
 - [ ] **TODO** find out the limit of java application. 
+
+### 1.12.2016
+Meeting with elastic search colleague:
+- dev landschaft can be provided for one week with unlimited logs
+- Go router in CF has performance issues
+- logging library helps to record response time, etc.
+- or log with Json string to collect start and end time
+- Canary landschaft has bigger DB plans
+- Dev landschaft has no DB, but is a diego
+- scale the router? 
+  - [ ] log timestamp in load generator
+  - [ ] log timestamp and response time in java application
+  - [ ] compare and decide where does the bottle neck come from: DB or network
+
