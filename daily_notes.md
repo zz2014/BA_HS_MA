@@ -156,7 +156,12 @@ Meeting with elastic search colleague:
 - Canary landschaft has bigger DB plans
 - Dev landschaft has no DB, but is a diego
 - scale the router? 
-  - [ ] log timestamp in load generator
+  - [x] log timestamp in load generator
   - [ ] log timestamp and response time in java application
   - [ ] compare and decide where does the bottle neck come from: DB or network
 
+### 2.12.2016
+ - [x] log timestamp and response time in java application
+ - [ ] compare and decide where does the bottleneck come from: DB or network
+   - logs from Kibana is incomplete. Can not ensure what is exactly the bottleneck
+   - instead of logging, save the response time in DB ?
