@@ -166,3 +166,12 @@ Meeting with elastic search colleague:
    - logs from Kibana is incomplete. Can not ensure what is exactly the bottleneck. Therefore the only safe way to store the information is to save them in a DB. 
    - [ ] **TODO** instead of logging, save the response time in DB 
    - [ ] **TODO** pass correlation id to application from load generator
+   
+### 6.12.2016
+To rule out whether DB is the bottleneck:
+- [x] scale the application, to see the requests can also scale
+  - the average requests can be handled stayed about 22,000 per minute. So the application should not be the bottleneck
+- [ ] try to use a bigger db in canary landschaft, to see if more requests can be handled
+- [ ] instead of logging, save the response time in DB 
+- [ ] pass correlation id to application from load generator
+
