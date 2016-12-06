@@ -175,4 +175,15 @@ To rule out whether DB is the bottleneck:
   - paid service is not allowed 
 - [ ] instead of logging, save the response time in DB 
 - [ ] pass correlation id to application from load generator
+- [x] pushed an application with no connection or usage of DB
+  -  the total requests handled and response time has no visible change
+  -  the bottleneck should be the router in cloud foundry
+- [x] two identical applications are pushed with different DB service but the same route
+  - no visible change in performance
+- [x] used canary landschaft to host applications
+  - no visible change in performance
+- [x] contacted cloud foundry colleague to confirm the limitation of router
 
+Consider next steps if the router is the bottleneck:
+- use another cloud foundry instance: anynines, AWS
+- use monsoon
