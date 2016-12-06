@@ -171,7 +171,8 @@ Meeting with elastic search colleague:
 To rule out whether DB is the bottleneck:
 - [x] scale the application, to see the requests can also scale
   - the average requests can be handled stayed about 22,000 per minute. So the application should not be the bottleneck
-- [ ] try to use a bigger db in canary landschaft, to see if more requests can be handled
+- [x] try to use a bigger db in canary landschaft, to see if more requests can be handled
+  - paid service is not allowed 
 - [ ] instead of logging, save the response time in DB 
 - [ ] pass correlation id to application from load generator
 
