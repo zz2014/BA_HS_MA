@@ -173,8 +173,8 @@ To rule out whether DB is the bottleneck:
   - the average requests can be handled stayed about 22,000 per minute. So the application should not be the bottleneck
 - [x] try to use a bigger db in canary landschaft, to see if more requests can be handled
   - paid service is not allowed 
-- [ ] instead of logging, save the response time in DB 
-- [ ] pass correlation id to application from load generator
+- [x] instead of logging, save the response time in DB 
+- [x] pass correlation id to application from load generator
 - [x] pushed an application with no connection or usage of DB
   -  the total requests handled and response time has no visible change
   -  the bottleneck should be the router in cloud foundry
@@ -222,8 +222,8 @@ Result:
 - Load generator lose last several logs due to unfinished promise
 
 ### 13.12.2016
-- [ ] establish monsoon instance with docker container
-  - [ ] JAVA APP
-  - [ ] Node APP
-  - [ ] Load generator
+- [x] establish monsoon instance with docker container
+  - [x] JAVA APP
+  - [x] Node APP
+  - [x] Load generator
 - [ ] prepare meeting with Tim 
