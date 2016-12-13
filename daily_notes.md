@@ -187,3 +187,43 @@ To rule out whether DB is the bottleneck:
 Consider next steps if the router is the bottleneck:
 - use another cloud foundry instance: anynines, AWS
 - use monsoon
+
+### 7.12.2016
+- [x]email CF performance team 
+- [x]implement node.js IO application
+
+### 8.12.2016
+- [x]implement node.js IO application
+- [x] deploy node to cloud
+- [x] test node application
+  - results are similar as java
+- ? why are all the requests around 20,000 per minute
+  - try sending request locally 100 and 200 parallel in 1 minute, there is no visible difference
+  - is there something wrong with load generation?
+- ? How does node.js handle parallisation
+  - there is only one thread
+  - the total parallel running promise might be limited
+- [x]create load generator in Java with multithreading 
+  - has similar results like node load generator
+  
+###09.12 
+- [x] start local testing without docker container
+  - performance and test results are influenced by whether a parallel tast , like browsing is carried out in the computer
+  - log will drag performance down. In cloud foundry may be different
+  - [ ] google how to measure CPU and Memory with time axel
+  - the test results seem unrealistic 
+  - scaling in monsoon will not be easy, do not consider it at moment
+  - set monsoon in the samce source location to reduce network latency
+- [x] logging responsetime inside application 
+- [ ] try exel graph
+
+Result: 
+- DB is fast enough: 0.5 millisecond
+- Load generator lose last several logs due to unfinished promise
+
+### 13.12.2016
+- [ ] establish monsoon instance with docker container
+  - [ ] JAVA APP
+  - [ ] Node APP
+  - [ ] Load generator
+- [ ] prepare meeting with Tim 
