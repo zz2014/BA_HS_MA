@@ -226,4 +226,14 @@ Result:
   - [x] JAVA APP
   - [x] Node APP
   - [x] Load generator
-- [ ] prepare meeting with Tim 
+- [x] prepare meeting with Tim 
+
+### 14.12.2016
+Meeting with Tim:
+- HA proxy limits the connection to 100 req/sec
+- useful links https://github.infra.hana.ondemand.com/cloudfoundry/cf-docs/wiki/Operations
+- useful tools: locust,hay go end user simulator, zipkin trace application
+- [ ] investigate node.js pg insert error
+- [ ] investigate java insert error
+- [ ] document meeting with kim 
+
