@@ -2,11 +2,14 @@
 \section{IO Intensive}
 Store the current order of product and its meta information, find the which shelf stores the current requested product, assign an idling logistic unit to pick up the itinerary ... I/O operations make up the majority of SAP business scenarios.  [TODO: DO I HAVE ANY STATISTIC TO SUPPORT THIS?]. In the I/O test conducted in this paper, applications are built to realize a scenario: advertisements are published in a bulletin board and clients can browse through the items. 
 
-The PostgreSQL backing service from Cloud Foundry is used as database. As the goal is to test how the application handles large amount of concurrency instead of the database efficiency, in the test data will not be queried in high quantity or complicated joined actions. 
+The PostgreSQL backing service from Cloud Foundry is used as database. As the goal is to test how the application handles large amount of concurrency instead of the database efficiency, data will not be queried in high quantity or complicated joined actions  in the test. 
 
-To bring Java and node.js to a comparable level, the applications are implemented with minimum use of frameworks so that the overhead or any other influence on performance can be first taken out of the table. 
+To bring Java and node.js to a comparable level, the applications are implemented with minimum use of frameworks so that the overhead or any other influence on performance can be first taken off the table. 
 
-Figure [TODO] shows the implementation of the Java application. It uses embedded Jetty server to handle plain HTTP requests. No REST or any other kind of web services is implemented. The connection with database is plain JDBC. CRUD operations are implemented with query statements. No ORM is utilized. Since the data structure is intentionally kept simple: only one table and with no complex data types, the application without ORM does not produce significantly more boiler codes. 
+Figure [TODO] shows the implementation of the Java application. It uses embedded Jetty server to handle plain HTTP requests. No REST or any other kind of web services is implemented. The connection with database is plain JDBC. CRUD operations are implemented with query statements. No ORM is utilized. Since the data structure is intentionally kept simple: only one table and with no complex data types, the application without ORM does not produce significantly more boiler codes.
+ 
+Figure[TODO] shows the implementation of the node application. It uses the standard node.js library to build the web platform. One other dependency it has is the database connection. 
 
+Another library both applications have used is the logging library. The logging library is configured so it can be filtered in elastic search. Because the convenience provided by the existing cloud foundry ELK platform, it is able to log information relevant to single requests and retrieve them through elastic search. 
      
 \section{Compute Intensive}
