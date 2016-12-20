@@ -237,3 +237,27 @@ Meeting with Tim:
 - [ ] investigate java insert error
 - [ ] document meeting with kim 
 
+### 15&16.12.2016
+- [x] work around the limitation of HA-Proxy
+	- with keep agent alive
+- [x] fix the node.js pg insert error
+	- with `pg-promise` db interface
+
+### 20.12.2016
+- [ ] scalibility test
+  - scaling is not linear, why?
+  - node application has `too many clients` error and has 1/3 requests comparing to java
+  - node application produces error when scaled
+- suggestions from Thomas:
+  - [ ] instead of throw error, log the failed request and save them in DB
+  - [ ] send a set number of requests every certain time period, so to reproduce the load test. https://www.youtube.com/watch?v=lJ8ydIuPFeU
+  - [ ] have a look at the implementation example of `Framework Benchmark`. https://github.com/TechEmpower/FrameworkBenchmarks/tree/master/frameworks/JavaScript/nodejs
+  - [ ] if the connection total to DB is limited, then is there a library which can make a request and send it til a connection is free? 
+- suggestions from Jens 
+  - [ ] find out why is node slow, with logs, with profiler
+  - [ ] give node application the same size of memory
+  - [ ] use another DB driver
+  - [ ] use another DB, e.g. Hana or use Diego/Docker
+  - [ ] find out, whether the java and node application running on the same node in CF or if one can control it. 
+  - [ ] test locally 
+  
