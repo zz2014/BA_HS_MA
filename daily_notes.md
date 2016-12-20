@@ -245,19 +245,26 @@ Meeting with Tim:
 
 ### 20.12.2016
 - [ ] scalibility test
-  - scaling is not linear, why?
-  - node application has `too many clients` error and has 1/3 requests comparing to java
-  - node application produces error when scaled
+  - java scaling is not linear, why?
+  - [x]node application has `too many clients` error and has 1/3 requests comparing to java
+    - solved with use of `pg-promise`
+  - [x] check out why node application produces error when scaled
+    - with use of `pg-promise` the failure is gone and scale 80% linear
 - suggestions from Thomas:
-  - [ ] instead of throw error, log the failed request and save them in DB
+  - [x] instead of throw error, log the failed request and save them in DB
   - [ ] send a set number of requests every certain time period, so to reproduce the load test. https://www.youtube.com/watch?v=lJ8ydIuPFeU
   - [ ] have a look at the implementation example of `Framework Benchmark`. https://github.com/TechEmpower/FrameworkBenchmarks/tree/master/frameworks/JavaScript/nodejs
+    - they used mongo db and sequelize (a node orm), shall try them
   - [ ] if the connection total to DB is limited, then is there a library which can make a request and send it til a connection is free? 
 - suggestions from Jens 
   - [ ] find out why is node slow, with logs, with profiler
-  - [ ] give node application the same size of memory
-  - [ ] use another DB driver
+  - [x] give node application the same size of memory
+    - doesn't change much, but node needs fewer memory, if 3 instances of small node matches one instance of big java, does it count as same efficient? 
+  - [x] use another DB driver
+    - tried `pg-promise` still bad performance.
   - [ ] use another DB, e.g. Hana or use Diego/Docker
+    - will try to use mongodb or sequelize
   - [ ] find out, whether the java and node application running on the same node in CF or if one can control it. 
+    - meet with Tim tomorrow?
   - [ ] test locally 
   
