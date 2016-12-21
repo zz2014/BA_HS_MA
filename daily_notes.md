@@ -269,6 +269,11 @@ Meeting with Tim:
   - [ ] test locally 
   
   ### 21.12.2016
-  - if 3 instances of small node matches one instance of big java, does it count as same efficient? 
-    - not exactly. Memory is not that expensive. In cloud, the CPU is more expensive than memory. Measuring the CPU consumption and know how much CPU Java and node needs respectively is important. Have a look at the pricing of cloud. Calculate how much does it cost when the requests increment. It might also be an argument. 
+- if 3 instances of small node matches one instance of big java, does it count as same efficient? 
+  - not exactly. Memory is not that expensive. In cloud, the CPU is more expensive than memory. Measuring the CPU consumption and know how much CPU Java and node needs respectively is important. Have a look at the pricing of cloud. Calculate how much does it cost when the requests increment. It might also be an argument. 
+- Meeting with Tim
+  - when cf is under load, metric information is flushing into Riemann. Riemann will write it into the influxDB. The writing is slow. When Riemann has to handle the flushing in data at the same time, it is under great stress. Metrics input will be stopped, which produces difficulty for the operating team in CF SAP. So, I should stop testing in CF Canary. It is said I will be given a dev landschaft. 
+  - Understanding the containerisation of Cloud foundry and how the CPU performance is calculated. To test the exact performance and have a clean environment is almost impossible. https://docs.cloudfoundry.org/concepts/architecture/warden.html#cpu
+  - CF Canary has 100 Diego(Garden), 50 DEA(Warden).
+  - Garden=go Warden. 
   
