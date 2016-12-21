@@ -276,4 +276,7 @@ Meeting with Tim:
   - Understanding the containerisation of Cloud foundry and how the CPU performance is calculated. To test the exact performance and have a clean environment is almost impossible. https://docs.cloudfoundry.org/concepts/architecture/warden.html#cpu
   - CF Canary has 100 Diego(Garden), 50 DEA(Warden).
   - Garden=go Warden. 
+- [ ] find why node is slower. 
+  - [x] used sequelizer: there is even too many clients error, reason is: if set max as 50, then every instance tries to open 50 connections. Then it exceeds the 100 limit of postgres. Therefore, looks further into java application. It seems it uses one connection per instance, the limit is never exceeded. And the query stays fast. use(select * from pg_stat_activity;) to query the active connections 
+   
   
