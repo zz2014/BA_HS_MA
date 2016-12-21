@@ -268,3 +268,7 @@ Meeting with Tim:
     - meet with Tim tomorrow?
   - [ ] test locally 
   
+  ### 21.12.2016
+  - if 3 instances of small node matches one instance of big java, does it count as same efficient? 
+    - not exactly. Memory is not that expensive. In cloud, the CPU is more expensive than memory. Measuring the CPU consumption and know how much CPU Java and node needs respectively is important. Have a look at the pricing of cloud. Calculate how much does it cost when the requests increment. It might also be an argument. 
+  
