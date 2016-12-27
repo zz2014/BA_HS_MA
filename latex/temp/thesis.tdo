@@ -1,0 +1,30 @@
+\contentsline {todo}{Write English abstract}{iii}{section*.2}
+\contentsline {todo}{Write German abstract}{iii}{section*.5}
+\contentsline {todo}{Write more about project introduction}{2}{section*.7}
+\contentsline {todo}{Write Related Work}{3}{section*.8}
+\contentsline {todo}{Write about CPU & Memory measuring tool}{4}{section*.9}
+\contentsline {todo}{Write about other tools}{5}{section*.10}
+\contentsline {todo}{Write about Cloud Foundry SAP services}{8}{section*.14}
+\contentsline {todo}{Write about Cloud Foundry Limitation: DB, Proxy, Test Landscape}{8}{section*.15}
+\contentsline {todo}{Write about limitation: network}{8}{section*.16}
+\contentsline {todo}{Write about Local Virtual Box, all in one machine, process limitation}{8}{section*.17}
+\contentsline {todo}{Write about Cloud Foundry DB limitation}{8}{section*.18}
+\contentsline {todo}{Write about Monsoon IAAS, cost, dc location(minimize network influence)}{8}{section*.19}
+\contentsline {todo}{Write about load generator as simple node application}{9}{section*.20}
+\contentsline {todo}{Write about collecting and storing data}{9}{section*.21}
+\contentsline {todo}{Write about limitation of db for load generating}{9}{section*.22}
+\contentsline {todo}{Write why care about response time}{10}{section*.23}
+\contentsline {todo}{refer to previous chapter}{10}{section*.24}
+\contentsline {todo}{Write ELK node application and log quota}{10}{section*.25}
+\contentsline {todo}{Write why care about cpu and memory}{10}{section*.26}
+\contentsline {todo}{Write: cf statistics}{10}{section*.27}
+\contentsline {todo}{Do I need it?}{11}{section*.28}
+\contentsline {todo}{Write statistcs to support sap business scinario}{12}{section*.29}
+\contentsline {todo}{Figure: Add figure for java application implementation}{12}{section*.29}
+\contentsline {todo}{Figure: Add figure for java application implementation}{13}{section*.29}
+\contentsline {todo}{Do I still need it ?}{13}{section*.30}
+\contentsline {todo}{Write results for local}{14}{section*.31}
+\contentsline {todo}{Write results for CF}{14}{section*.32}
+\contentsline {todo}{Write results for monsoon}{14}{section*.33}
+\contentsline {todo}{Do I need it ?}{14}{section*.34}
+\contentsline {todo}{Write conclusion}{15}{section*.35}

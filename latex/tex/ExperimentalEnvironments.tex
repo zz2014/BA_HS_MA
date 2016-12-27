@@ -1,12 +1,36 @@
 \chapter{Experimental Environments}
+
+The experimenting environment is of most importance for technological evaluation. It is also impossible to find a configuration which can do both technology justice. One can easily end up trapped by some technological limitation of a framework that one used or in the case of this project, confined by existing infrastructure provider. However, as the project is conducted under the company context, the limitations have to be accepted and taken into account. 
+
+\subsection{Server in local machine}
+Locally a virtual box running in Ubuntu 14.04 with 4 CPUs and 12G memory is installed on host machine which is a Macbook  Pro with 4 CPUs and 16G Memory. However, the application has to share the resource with database and load generator. Host machine also inevitably runs other applications like outlook, skype office, which adds processing overhead and affect any performance potential of the application. 
+
 \section{Server running environment -  Cloud Foundry}
+Cloud Foundry is an open source software bundle that allows you to run a polyglot Cloud Computing \ac{PaaS}. Initially it was developed as a Java \ac{PaaS} for Amazon EC2 by Chris Richardson, in 2009 acquired by SpringSource, which was then acquired by VMWare, then handed over to Pivotal.
+The Cloud Foundry Foundation (http://www.cloudfoundry.org/) is now the maintainer of Cloud Foundry. More than 50 companies are members of this foundation, such as Pivotal, EMC, HP, IBM, Rackspace, SAP, or VMWare.
+The Cloud Foundry PaaS is a multi-component automation platform for application deployment. It provides a scalable runtime environment that can support most frameworks and languages that run on Linux. It also contains many components that simplify deployment and release of microservices applications (for instance, Router, Loggregator, Elastic Runtime (\ac{DEA}), a message bus (NATS), Health Manager, Cloud Controller, etc.)
+
 \subsection{Cloud Foundry at SAP}
+Compared with other PaaS offerings, Cloud Foundry has some unique features: it has no limitation on language and framework support and is does not restrict deployment to a single cloud.  It is an open source platform that one can deploy to run his apps on his own computing infrastructure, or deploy on an IaaS like \ac{AWS}, vSphere, or OpenStack. In SAP, it is first integrated with SAP Monsoon, then later shifted to Openstack and now hosted in \ac{AWS}. 
+
+There are two different landscape of Cloud Foundry in SAP. One is called "AWS live". In this landscape, applications run inside containers managed by Warden containerization (a virtualization technique providing isolation on operating system level, which is more efficient than virtual machines). The Warden containers including the applications running inside are managed by \ac{DEA} that also monitor the application health and provide the management interface to the Cloud Foundry platform.
+
+The other landscape is called "AWS Canary". Instead of \ac{DEA}, each application VM has a Diego Cell that executes application start and stop actions locally, manages the VM’s containers, and reports app status and other data to the BBS and Loggregator. Instead of Warden, Garden is used as the containers that Cloud Foundry uses to create and manage isolated environments. Diego architecture improves the overall operation and performance, for example supporting Docker contaniers.
+
 \subsection{PaaS - Service plans, Backing services and more}
+Services such as the UAA form the core of a PaaS offering; the choice depends on the domain of the applications. Cloud Foundry distinguishes Managed Services that obey the Cloud Foundry management APIs, and User-provided Services that serve as adapters to external services. In both cases, applications can be wired to service instances; this is called Service Binding.
+
+\todo[inline]{Write about Cloud Foundry SAP services}
 \subsection{Limitations}
+\todo[inline]{Write about Cloud Foundry Limitation: DB, Proxy, Test Landscape}
 \section{ Client running environments}
 \subsection{Influential factors for measuring}
+\todo[inline]{Write about limitation: network}
 \subsection{Client in local machine}
+\todo[inline]{Write about Local Virtual Box, all in one machine, process limitation}
 \subsection{Client in Cloud Foundry}
+\todo[inline]{Write about Cloud Foundry DB limitation}
 \subsection{Client in Monsoon}
+\todo[inline]{Write about Monsoon IAAS, cost, dc location(minimize network influence)}
 
 

@@ -386,9 +386,9 @@
 
 \newcommand{\hsmabiben}{\begin{small}\textbf{\hsmaautorbib}: \\ \hsmatitelen \ / \hsmaautor. \ -- \\ \hsmatypen, \hsmaort : \hsmakoerperschaften, \hsmajahr. \pageref{lastpage} pages. \end{small}}
 
-\ifthenelse{\equal{\hsmasprache}{de}}%
-  {\hsmabibde \\ \vspace{0.5cm} \\ \hsmabiben}
-  {\hsmabiben \\ \vspace{0.5cm} \\ \hsmabibde}
+\ifthenelse{\equal{\hsmasprache}{en}}
+ {\hsmabiben \\ \vspace{0.5cm} \\ \hsmabiben}
+ {\hsmabiben \\ \vspace{0.5cm} \\ \hsmabiben}
 
 
 % Erklärung
@@ -426,9 +426,16 @@ Eine Vervielfältigung und Veröffentlichung der Arbeit ohne ausdrückliche Gene
 
 \cleardoublepage
 
+
+\documentclass{article}
+\usepackage{xcolor}
+\newcommand\myworries[1]{\textcolor{red}{#1}}
+
 % Abstract
 \chapter*{Abstract}
 This project  aims to evaluate the performance 
 \ifthenelse{\equal{\hsmasprache}{de}}%
   {\subsubsection*{\hsmatitelde}\hsmaabstractde\subsubsection*{\hsmatitelen}\hsmaabstracten}
+  \todo[inline]{Write English abstract}
   {\subsubsection*{\hsmatitelen}\hsmaabstracten\subsubsection*{\hsmatitelde}\hsmaabstractde}
+  \todo[inline]{Write German abstract}
