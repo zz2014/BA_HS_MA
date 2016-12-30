@@ -279,4 +279,8 @@ Meeting with Tim:
 - [ ] find why node is slower. 
   - [x] used sequelizer: there is even too many clients error, reason is: if set max as 50, then every instance tries to open 50 connections. Then it exceeds the 100 limit of postgres. Therefore, looks further into java application. It seems it uses one connection per instance, the limit is never exceeded. And the query stays fast. use(select * from pg_stat_activity;) to query the active connections 
    
-  
+### 28.12.2016
+- find a way to define pool size in node
+  - postgres DB has a limitation of 100 connections. There are other connections like from chisel and from browser, then the poolsize should be under 95. That is only one instance. If one starts scaling, then the connection wouldn't be enough. 
+  - however, it seems with 10*8 parallel requests, 20 instances and 80 instances doesn't have much difference. 
+- is it possible that java application is not pooling correctly? Use DBPC for a change. 
