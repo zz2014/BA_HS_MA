@@ -284,3 +284,65 @@ Meeting with Tim:
   - postgres DB has a limitation of 100 connections. There are other connections like from chisel and from browser, then the poolsize should be under 95. That is only one instance. If one starts scaling, then the connection wouldn't be enough. 
   - however, it seems with 10*8 parallel requests, 20 instances and 80 instances doesn't have much difference. 
 - is it possible that java application is not pooling correctly? Use DBPC for a change. 
+
+### 02.01.2016
+- tried other connection pool implementation to make the node application perform better. 
+  - [x] generic pool
+  - [x] pg.native
+  at the end decide to use pg.native. However, as java is also using a faster connection pool. node still consumes only half as many requests.
+
+### 03.01.2016
+- postgresql backing service is down. With error message (HTTP code 409) unexpected - `Container f8502acff5170f77d25aab7af757c7322d3fa3246543b1218855a8838b585a5e is restarting, wait until the container is running.`.Write to CF Users to ask why this is happening and meanwhile deleted and recreated the service.
+- pushed different version of node implementation in the cf. 
+- test: node can scale almost linear. Java not. Thomas suggests: java uses twice more cpu, arguement: two node applications have the same share of cpu and can perform as well (nearly). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
