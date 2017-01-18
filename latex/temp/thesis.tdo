@@ -3,20 +3,19 @@
 \contentsline {todo}{Write more about project introduction}{2}{section*.7}
 \contentsline {todo}{Write Related Work}{3}{section*.8}
 \contentsline {todo}{Write about CPU & Memory measuring tool}{5}{section*.9}
-\contentsline {todo}{Write about other tools: Locust, Apache Bench, NGrinder, hey}{5}{section*.10}
+\contentsline {todo}{Write 4.3 configuration server \& client}{12}{section*.18}
 \contentsline {todo}{Figure: Add figure for node application for load generator}{13}{section.5.1}
-\contentsline {todo}{Write why care about response time}{15}{section*.20}
-\contentsline {todo}{refer to previous chapter}{15}{section*.21}
-\contentsline {todo}{Write ELK node application and log quota}{15}{section*.22}
-\contentsline {todo}{Write why care about cpu and memory}{15}{section*.23}
-\contentsline {todo}{Write: cf statistics}{15}{section*.24}
-\contentsline {todo}{Do I need it?}{16}{section*.25}
-\contentsline {todo}{Write statistcs to support sap business scinario}{17}{section*.26}
-\contentsline {todo}{Figure: Add figure for java application implementation}{17}{section*.26}
-\contentsline {todo}{Figure: Add figure for java application implementation}{18}{section*.26}
-\contentsline {todo}{Do I still need it ?}{18}{section*.27}
-\contentsline {todo}{Write results for local}{19}{section*.28}
-\contentsline {todo}{Write results for CF}{19}{section*.29}
-\contentsline {todo}{Write results for monsoon}{19}{section*.30}
-\contentsline {todo}{Do I need it ?}{19}{section*.31}
-\contentsline {todo}{Write conclusion}{20}{section*.32}
+\contentsline {todo}{Write ELK node application and log quota}{18}{section*.21}
+\contentsline {todo}{Write recording data inside the application }{18}{section*.22}
+\contentsline {todo}{Write why care about cpu and memory}{18}{section*.23}
+\contentsline {todo}{Write: cf statistics}{18}{section*.24}
+\contentsline {todo}{Do I need it?}{19}{section*.25}
+\contentsline {todo}{Write statistcs to support sap business scinario}{20}{section*.26}
+\contentsline {todo}{Figure: Add figure for java application implementation}{20}{section*.26}
+\contentsline {todo}{Figure: Add figure for java application implementation}{21}{section*.26}
+\contentsline {todo}{Do I still need it ?}{21}{section*.27}
+\contentsline {todo}{Write results for local}{22}{section*.28}
+\contentsline {todo}{Write results for CF}{22}{section*.29}
+\contentsline {todo}{Write results for monsoon}{22}{section*.30}
+\contentsline {todo}{Write conclusion}{23}{section*.31}
+\contentsline {todo}{Write Future Work}{24}{section*.32}

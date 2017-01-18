@@ -1,8 +1,40 @@
 \chapter{Test Results and Analysis}
 \section{IO Intensive}
+
+\begin{tikzpicture}
+\begin{axis}[
+title={cpu/throughput},
+ylabel={cpu [\%]},
+xlabel={throughput [requests per minute]},
+xmin=0, ymax=100,
+ymin=0, xmax=140000,
+ytick={0,20,40,60,80,100},
+xtick={0,20000,40000,60000,80000,100000,120000,140000},
+legend pos=north west,
+ymajorgrids=true,
+grid style=dashed,
+]
+
+\addplot[
+color=blue,
+mark=square,
+]
+coordinates {
+	(22601,19.45)
+};
+
+\addplot[
+color=red,
+mark=square,
+]
+coordinates {
+	(42601,39.45)
+};
+
+\legend{java,node}
+
+\end{axis}
+\end{tikzpicture}
   \todo[inline]{Write results for local}
   \todo[inline]{Write results for CF}
   \todo[inline]{Write results for monsoon}
-
-\section{Compute Intensive}
-  \todo[inline]{Do I need it ?}

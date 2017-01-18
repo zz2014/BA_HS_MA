@@ -293,9 +293,41 @@ Meeting with Tim:
 
 ### 03.01.2016
 - postgresql backing service is down. With error message (HTTP code 409) unexpected - `Container f8502acff5170f77d25aab7af757c7322d3fa3246543b1218855a8838b585a5e is restarting, wait until the container is running.`.Write to CF Users to ask why this is happening and meanwhile deleted and recreated the service.
-- pushed different version of node implementation in the cf. 
+- pushed different version of node implementation in the github. 
 - test: node can scale almost linear. Java not. Thomas suggests: java uses twice more cpu, arguement: two node applications have the same share of cpu and can perform as well (nearly). 
 
+### 04/05 01.2016
+- write the thesis
+
+### 10.01.2016
+- Discussion with Jens:
+  - the node application might run simply more slowly than java application. However, all considered, node application consumes much less cpu resource, instead, java application needs over 100%. In actual world, people pay for the cpu usage and memory. Therefore, comparing them with same resource configuration should be done. 
+  - java application needs to write a large amount of data into database. It goes into error in cloud. batch should be used to improve performance. 
+  - java application reaches a certain amount of total requests, then the throughput will no longer increase. This is solved by saving the response time in database and compare. There is a clear matching between long request time of total request time and database requests time. This means the database is the bottleneck(100 connection). One should use another database that has more resource.
+
+- [x] use batch 
+- [x] log responsetime in database
+- [x] try using hana db
+  - it is even slower
+- [ ] try ton set the criteria for testing:
+  - with fixed cpu usage, comparing memory consumption
+    - node: 1x4 
+    - java: 1x8
+  - with fixed average response time, comparing cpu usage and memory consumption 
+    - node: 1x4
+    - java: 1x8
+  - with fixed throughput and response time, comparing cpu usage and number of instances 
+- [ ] there might be memory leak, as memory consumption doesn't go down after the load test is ended. 
+  
+### 11.01.2017
+- [ ] manually save cpu and memory in table
+- [ ] find out the warm-up phase for java, and how to carry it out
+- [ ] gathering rational statistics:
+  - [ ] use excel to connect to and duplicate db?
+  - [ ] draw first graphs
+- [ ] there might be memory leak, as memory consumption doesn't go down after the load test is ended.   
+  - node application's memory goes down after sometime (hours?).
+    
 
 
 
