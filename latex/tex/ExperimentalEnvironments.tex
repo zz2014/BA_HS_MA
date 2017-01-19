@@ -66,7 +66,8 @@ Where the client is running can influence greatly on the performance of the serv
 Running server and client in the same physical machine kind of limited the network overhead. However, they consume the same computing resource and inevitably affected by other processes simultaneously operating in the same machine. One client instance won't be enough to generate load to stress application. Regardless, the moment one tries to scale the total of client applications, then it is competing resource with the actual application. This leads to tainted test results.  
 \subsection{Client in Cloud Foundry}
 Running the client in Cloud Foundry poses less network overhead for the request. Although requests still have to go through HAProxy to arrive at Gorouter despite the fact that client and server are under same domain or even running on the same node. Another convenience to run client on Cloud Foundry is that it is simple to scale. One client instance will have its limitation in sending parallel requests, but one can have as many instances as one needed. This is powerful and essential for this thesis. 
-%\subsection{Client in Monsoon}
+
+\section{Server and Client Configuration in the Thesis}
 \todo[inline]{Write 4.3 configuration server \& client}
 %\todo[inline]{Write about Monsoon IAAS, cost, dc location(minimize network influence)}
 

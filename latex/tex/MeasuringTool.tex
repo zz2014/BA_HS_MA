@@ -47,3 +47,10 @@ For apps deployed on Cloud Foundry, one way to find out if it has enough native 
 	\caption{Find out the memory Java and node.js applications need }
 	\label{memory}
 \end{figure}
+
+\section{Access data from backing service}
+In the thesis, raw data instead of aggregated ones are collected and saved in backing service in cloud foundry. However, as all the other things in cloud, they are not that simple to access. \\
+Toad extension for eclipse \footnote{Toad extension for eclipse \citep{toad}} is used in the thesis to connect to database and query data. It has no problem connecting to local postgresql, as long as information such as hostname, user, password etc. are provided. Run the command \textit{cf env <application-name>} in Cloud Foundry, one can find a detailed information regarding backing service. For postgresql, exactly the information one needs to establish connection locally are all listed. It seems to be only straightforward to get into the database. However, TCP connection to the postgresql back-end service in Cloud Foundry is not allowed.\\
+Cloud Foundry has provided a solution. It has enabled SSH access to the services in Diego cell \footnote{Accessing service with SSH https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-services.html}. However, if one is behind a cooperate proxy, for example, SAP proxy, the SSH connection cannot be established. \\
+Finally, Chisel \footnote{chisel \citep{chisel}}comes to rescue. It is an HTTP client and server which acts as a TCP proxy, written in Go (Golang). It is an application to be deployed to Cloud Foundry and binded to the target backing service. By starting the application, it maps TCP endpoits of backing services to local workstation and ready to be connected from the toad extension. 
+
