@@ -1,24 +1,40 @@
-\chapter{Test Scenario}
+\chapter{Implementation of Applications}
 Store the current order of product and its meta information, find the which shelf stores the current requested product, assign an idling logistic unit to pick up the itinerary ... I/O operations make up the majority of SAP business scenarios.    \todo[inline]{Write statistcs to support sap business scinario}
  In the load test conducted in this paper, applications are built to realize a scenario: advertisements are published in a bulletin board and clients can browse through the items. 
 
 The PostgreSQL backing service from Cloud Foundry is used as database. As the goal is to test how the application handles large amount of concurrency instead of the database efficiency, data will not be queried in high quantity or complicated joined actions  in the test. 
 
-To bring Java and node.js to a comparable level, the applications are implemented with minimum use of frameworks so that the overhead or any other influence on performance can be first taken off the table. 
+To bring Java and node.js to a comparable level, the applications are implemented with minimum use of frameworks so that the overhead or any other influential factors on performance can be first taken off the table. 
 \subsection{Java implementation}
 \missingfigure{Add figure for java application implementation}
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=12cm]{java-structure}
 	\caption{java application implementatio}
 	\label{java-implementation}
 \end{figure}
-Figure \ref{java-implementation}shows the implementation of the Java application. It uses embedded Jetty server to handle plain HTTP requests. No REST or any other kind of web services is implemented. The connection with database is plain JDBC. CRUD operations are implemented with query statements. No ORM is utilized. Since the data structure is intentionally kept simple: only one table and with no complex data types, the application without ORM is quite in order.\\
-In the process of the implementation and following load testing, attempts are made to make the application more efficient. To eliminate possible overhead brought by json parsing, the response is put out as  plain text. To more efficiently 
- \subsection{Java implementation}
- \missingfigure{Add figure for java application implementation}
-Figure X shows the implementation of the node application. It uses the standard node.js library to build the web platform. One other dependency it has is the database connection. 
 
-Another library both applications have used is the logging library. The logging library is configured so it can be filtered in elastic search. Because the convenience provided by the existing cloud foundry ELK platform, it is able to log information relevant to single requests and retrieve them through elastic search. This function is used later when comparing the measuring results and determining the bottleneck. 
+Figure \ref{java-implementation} shows the implementation of the Java application. It uses embedded Jetty server to handle plain HTTP requests. No REST or any other kind of web services is implemented. The connection with database is plain JDBC. CRUD operations are implemented with query statements. No ORM is utilized. Since the data structure is intentionally kept simple: only one table and with no complex data types, the application without ORM is quite in order.\\
+\subsection{optimize the Java implementation}
+All possible attempts are made to bring about every potential performance of the application. Since there is no complex logic, the focus of optimization lays on the interaction between applications and database. In case of Java implementations, to set a optimal thread pool configuration is also investigated. \\
+The first checkpoint is database connection which greatly affect performance since it is the most expensive operation in the application which has no complicated computing logic. Opening a connection and closing it with every request would gigantically slow down the application. Therefore connection pool is a key component in the implementation. It turns out there are quite a few libraries which handles connection pooling. In the thesis,  three different libraries are tried out. \textit{PGPoolingDataSource}  \footnote{see Applications DataSource \citep{pgpool} }  comes with default PostgreSQL JDBC driver. \textit{commons-dbcp2} \footnote{see The DBCP Component \citep{dbcp} } package from Apache Software Foundation provides an opportunity to coordinate the efforts required to create and maintain an efficient, feature-rich package under the \ac{ASF} license. \textit{HikariCP} is a "zero-overhead" production ready connection pool. It turns out \textit{HikariCP} \footnote{see HikariCP \citep{hikari}}  has outperformed the other two. \\
+The next thing is to find an ideal configuration for the connection pool size. In an article from Brett Wooldridge \footnote{see About Pool Sizing \citep{hikari}}, an interesting formula for pool size configuration is pointed out: $connections = ((core\_count * 2) + effective\_spindle\_count)$. In the case of thesis, application is running in DEA/Diego cell which contains 4 CPUs. Making the total connections slightly larger than the calculated number to keep that number of connections active, 10 is set as a fixed number. \\ 
+Thread pool size is also scrutinized and following the recommendation made by Jetty\footnote{see High Load \citep{threadpool}}, thread pool size is set from 10 to 400. \\
+
+ \subsection{Node.js implementation}
+ \missingfigure{Add figure for java application implementation}
+ 
+ \begin{figure}[h]
+ 	\centering
+ 	\includegraphics[width=12cm]{java-structure}
+ 	\caption{node application implementatio}
+ 	\label{node-implementation}
+ \end{figure}
+ 
+Figure \ref{node-implementation} shows the implementation of the node application. It uses the standard node.js library to build the web platform. One other dependency it has is the database connection. 
+
+\subsection{optimize the node.js implementation}
+Node application basically faces the same configuration of connection pool in database. In the thesis, also three different libraries are tried out. Unlike Java libraries, there is some overlapping in regard to the node libraries. In npm, one can find a number of PostgreSQL drivers. However, majority of them are built on single one: "node-postgres/pg". Either they are wrappers or additional implementation with "promise" or "async/wait". A great difference can not be derived from implementation from "pg" and "pg-promise" . The comprehensive research on framework benchmarking uses "sequelizer", which is also tried out in the thesis. However, it yields even a worse performance result as the object mapping costs indisputably computing time. In the end, the suggestion from "pg" writer is adopted to use "pg-native" which can boost a 20-30\% increase in parsing speed (YMMV). There is not much varieties of pooling in node either. "pg" uses "pg-pool" which again utilizes "generic-pool" . In the thesis, they are all checked out, but no significant difference is found.  \\
      
 
