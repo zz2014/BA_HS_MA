@@ -68,7 +68,14 @@ Running server and client in the same physical machine kind of limited the netwo
 Running the client in Cloud Foundry poses less network overhead for the request. Although requests still have to go through HAProxy to arrive at Gorouter despite the fact that client and server are under same domain or even running on the same node. Another convenience to run client on Cloud Foundry is that it is simple to scale. One client instance will have its limitation in sending parallel requests, but one can have as many instances as one needed. This is powerful and essential for this thesis. 
 
 \section{Server and Client Configuration in the Thesis}
-\todo[inline]{Write 4.3 configuration server \& client}
-%\todo[inline]{Write about Monsoon IAAS, cost, dc location(minimize network influence)}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=14cm]{deployment_diagram}
+	\caption{Deployment diagram for test environment}
+	\label{deployment-diagram}
+\end{figure}
+With all the matters considered, figure \ref{deployment-diagram} shows the final setting of testing environment. First, both client and server are deployed in the same landscape in Cloud Foundry in order to minimize possible network overhead. Second, to avoid the scenario that load generator is running in the same node as the applications, the client and server are deployed into different containers. Clients are in DEA while applications are deployed to Diego. In addition to that, separate PostgreSQL database services are assigned to applications so that the load on the database is distributed. To retrieve data from database, chisel is used to bring TCP tunnel over HTTP, so that Toad extension on local machine can access the test results. Finally, through Cloud Foundy CLI, requests on application health is made and CPU and memory consumption information is gathered. \\
+Another thing to pay attention to is how much memory the applications are allocated. For Java application, 800MB memory is set aside. As mentioned earlier in \ref{memory}, it turns out Java needs about 300MB. However, since Java relies heavily on CPU shares allocated to it, more memory is alloted to ensure it has enough CPU even in a crowded node. On the contrary, Node.js application is given 200MB for the reason that it is single-threaded and more memory doesn't help it gain more computing resource. For the sake of not running into situation of not enough memory due to operational overhead in application such as garbage collector, memory is given quite generously to both applications.  
+
 
 

@@ -16,5 +16,46 @@ Figure\ref{cpu-100} shows the result of the test described above. It can be dedu
 \end{figure}
 
 \section{Test with real load}
-  \todo[inline]{Java scaling}
-  \todo[inline]{Node scaling}
+\subsection{Test configuration}
+ In this round of test, applications are going to scale. Then how should it be contemplated whether two applications are equally scaled? As found out earlier, one Java instance utilizes more CPU while one Node.js employs only one, which leads the test to comparing vertical scaling in Java application with horizontal scaling in Node.js. This is still feasible if one can be sure Java always obtains the same CPUs. However, figure \ref{java-cpu-limit} shows, that Java application never get to use all of its 4 CPUs. The database connection and router load are checked and they are not under stress at all.  An abnormal increase in memory is observed which indicates something suspicious in the application. The implementation is scrutinized, nevertheless, in the thesis no obvious cause is found. This leads to the realization that even though one Java instance gains 4 CPUs, it doesn't equal to four one-CPU Node instances because somehow not all 4 CPUs are put in use. 
+ 
+ \begin{figure}[h]
+ 	\centering
+ 	\includegraphics[width=12cm]{java-cpu-limit}
+ 	\caption{Limited CPU usage in Java application}
+ 	\label{java-cpu-limit}
+ \end{figure}
+ 
+ Therefore, it is decided in this thesis to compare the performance by normalizing the throughput produced by a not overloaded CPU. For example, application achieves a 100000 throughput without a significant increase in response time. Its CPU usage is 250\%. Then the normalization of throughput is 100000/250=400. \\ 
+Load is brought about through sending one request on application per instance of load generator.It is decided not to send parallel requests so as to guarantee each instance of the generator is simulating one end user. With each new round of test, 4 instances will be added to the existing running load generator.\\
+ For Java application, the increase on load stops when the throughput from application stops growing while the response time climbs up. Also, the load stops when router has reached its limit (70\% load). For Node.js applications, load stops accumulating when the CPU usage has reached over 90\% or equals the maximum CPU usage of Java applications tested.
+  
+ \begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{java-all-cpu}
+	\caption{Load test on Java: throughput in relation to CPU}
+	\label{java-all-cpu}
+\end{figure}
+\subsection{Test result}
+In figure \ref{java-all-cpu}, it is illustrated the throughput in relation to the CPU usage of Java application in running instance numbers of 1, 2, and 3. When 3 Java applications are running, the router reaches its maximum capacity and should be further scaled. As summarized in table \ref{java-cpu-usage}, with every increase of instance, the CPU usage from total available CPU decreases, which indicates the application doesn't scale horizontally by adding more instances. 
+\begin{table}[h]
+	\caption{Percentage of utilized CPU}
+	\label{java-cpu-usage}
+	\renewcommand{\arraystretch}{1.2}
+	\centering
+	\sffamily
+	\begin{footnotesize}
+		\begin{tabular}{l l l l  }
+			\toprule
+			\textbf{Instance Number} & \textbf{Available CPU} & \textbf{Maximum CPU Usage}& \textbf{Percentage of Utilzed CPU} }\\
+		\midrule
+		1 	&	229	m & 400 & 57\% \\
+		2	&	361 m & 800& 45\% \\
+		3	&	429 m &	1200 & 35\%\\
+		\bottomrule
+	\end{tabular}
+\end{footnotesize}
+\rmfamily
+\end{table}
+
+Figure \ref{node-all-cpu} depicts the same performance information of Node.js application. The test ends with 5 instances of Node.js application that is when the CPU usage is in the same range of Java application. 
