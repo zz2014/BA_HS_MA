@@ -29,33 +29,81 @@ Figure\ref{cpu-100} shows the result of the test described above. It can be dedu
  Therefore, it is decided in this thesis to compare the performance by normalizing the throughput produced by a not overloaded CPU. For example, application achieves a 100000 throughput without a significant increase in response time. Its CPU usage is 250\%. Then the normalization of throughput is 100000/250=400. \\ 
 Load is brought about through sending one request on application per instance of load generator.It is decided not to send parallel requests so as to guarantee each instance of the generator is simulating one end user. With each new round of test, 4 instances will be added to the existing running load generator.\\
  For Java application, the increase on load stops when the throughput from application stops growing while the response time climbs up. Also, the load stops when router has reached its limit (70\% load). For Node.js applications, load stops accumulating when the CPU usage has reached over 90\% or equals the maximum CPU usage of Java applications tested.
-  
+ 
+\subsection{Test result}
  \begin{figure}[h]
 	\centering
-	\includegraphics[width=12cm]{java-all-cpu}
-	\caption{Load test on Java: throughput in relation to CPU}
-	\label{java-all-cpu}
+	\includegraphics[width=12cm]{all-app-cpu}
+	\caption{Throughput in relation to CPU}
+	\label{all-app-cpu}
 \end{figure}
-\subsection{Test result}
-In figure \ref{java-all-cpu}, it is illustrated the throughput in relation to the CPU usage of Java application in running instance numbers of 1, 2, and 3. When 3 Java applications are running, the router reaches its maximum capacity and should be further scaled. As summarized in table \ref{java-cpu-usage}, with every increase of instance, the CPU usage from total available CPU decreases, which indicates the application doesn't scale horizontally by adding more instances. 
+In figure \ref{all-app-cpu}, it is illustrated the throughput in relation to the CPU usage of Java application in running instance numbers of 1, 2, and 3. The xx axis is the throughput , the yy axis is the CPU consumption. When 3 Java applications are running, the router reaches its maximum capacity and becomes bottleneck as no more requests can be handled without losing time spent waiting for the load balancing in router. As summarized in table \ref{app-cpu-usage}, with every increase of instance, the CPU usage from total available CPU decreases, which indicates the application doesn't scale horizontally by adding more instances. 
 \begin{table}[h]
 	\caption{Percentage of utilized CPU}
-	\label{java-cpu-usage}
+	\label{app-cpu-usage}
 	\renewcommand{\arraystretch}{1.2}
 	\centering
 	\sffamily
 	\begin{footnotesize}
-		\begin{tabular}{l l l l  }
+		\begin{tabular}{l l l l l  }
 			\toprule
-			\textbf{Instance Number} & \textbf{Available CPU} & \textbf{Maximum CPU Usage}& \textbf{Percentage of Utilzed CPU} }\\
+			\textbf{Application  type} &\textbf{Instance Number} & \textbf{Available CPU \%} & \textbf{Maximum CPU\%}& \textbf{Utilzed CPU} }\\
 		\midrule
-		1 	&	229	m & 400 & 57\% \\
-		2	&	361 m & 800& 45\% \\
-		3	&	429 m &	1200 & 35\%\\
+		Java &1 	&	229	 & 400 & 57\% \\
+		Java &2	&	361 & 800& 45\% \\
+		Java &3	&	429  &	1200 & 35\%\\
+				\midrule
+			Node.js &1 	&	103	 & 100 & 103\% \\
+		Node.js &2	&	198 &  200& 99\% \\
+		Node.js &3	&	291 & 300 & 97\%\\
+		Node.js &4	&	384 & 400 & 96\%\\
+		Node.js &5	&	471 & 500 & 94\%\\
 		\bottomrule
 	\end{tabular}
 \end{footnotesize}
 \rmfamily
 \end{table}
 
-Figure \ref{node-all-cpu} depicts the same performance information of Node.js application. The test ends with 5 instances of Node.js application that is when the CPU usage is in the same range of Java application. 
+The same performance information of Node.js application is also depicted in figure \ref{all-app-cpu}. The test ends with 5 instances of Node.js application , which is when the CPU usage is in the same range of Java one. As summarized in table \ref{app-cpu-usage}, application shows a quite steady utilization of the available CPU resources and scale almost horizontally. \\
+Figure \ref{all-app-rt} presents average response time of each test round on the yy axis in relation to throughput on xx axis. It helps to determine whether the CPU is under great stress when producing the throughput. One can't decide application runs better on the sole account that it handles more requests. Longer average response time allows application to parallelize more actions, which can hardly be considered a better performing application. 
+ \begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{all-app-rt}
+	\caption{Response time in relation to throughput}
+	\label{all-app-rt}
+\end{figure}
+As mentioned earlier, a criteria to decides whether the application is working efficiently is to see whether the throughput increases without a surge in response time. In the graph, some critical points are selected according to criteria. The response time before the selected point turns out to be a relatively flat line. After that, it is a clear tendency of increasing. The corresponding usage of CPU is sorted out and listed. We can say at the chosen points, the CPU still works with no compelling stress. Table\ref{app-cpu-normalized} shows a normalization of the throughput on CPU.
+\begin{table}[h]
+	\caption{Through put in relation to CPU}
+	\label{app-cpu-normalized}
+	\renewcommand{\arraystretch}{1.2}
+	\centering
+	\sffamily
+	\begin{footnotesize}
+		\begin{tabular}{l l l l l  }
+			\toprule
+			\textbf{Application  type} &\textbf{Instance Number} & \textbf{CPU \%} & \textbf{Throughput}& \textbf{Normalized value} }\\
+		\midrule
+		Java &1 	&	196	 & 260701 & 1330\\
+		Java &2	&	299 & 410399& 1372\\
+		Java &3	&	373  &	525698 & 1409\\
+		\midrule
+		Node.js &1 	&	83	 & 89943 & 1070\\
+		Node.js &2	&	173 &  224948&1300\\
+		Node.js &3	&	267 & 303474 & 1136\\
+		Node.js &4	&	338 & 397007 &1174\\
+		Node.js &5	&	421 & 501403 & 1190\\
+		\bottomrule
+	\end{tabular}
+\end{footnotesize}
+\rmfamily
+\end{table}
+
+It can be deducted from the table that even though Java application scales inefficiently through adding instance, in terms of the CPU it scales almost linear. Comparing with Node.js application, it yields more throughput for every percentage of CPU which leads to the conclusion that it is more CPU efficient. \\
+The last metric to check is memory consumption. As displayed clearly in figure \ref{all-app-memory}, Node.js shows excellent memory utilization for the whole test range while Java is quite memory demanding. Although it offers some performance gains in terms of handling more requests than the Node.js, it is not in proportion with the memory consumption. 
+ \begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{all-app-mem}
+	\caption{Memory in relation to CPU}
+	\label{all-app-memory}
+\end{figure}
