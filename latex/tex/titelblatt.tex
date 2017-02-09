@@ -381,14 +381,11 @@
 % Bibliographische Informationen
 \null\newpage
 \thispagestyle{empty}
-  
-\newcommand{\hsmabibde}{\begin{small}\textbf{\hsmaautorbib}: \\ \hsmatitelde \ / \hsmaautor. \ -- \\ \hsmatypde, \hsmaort : \hsmakoerperschaftde, \hsmajahr. \pageref{lastpage} Seiten.\end{small}}
 
 \newcommand{\hsmabiben}{\begin{small}\textbf{\hsmaautorbib}: \\ \hsmatitelen \ / \hsmaautor. \ -- \\ \hsmatypen, \hsmaort : \hsmakoerperschaften, \hsmajahr. \pageref{lastpage} pages. \end{small}}
 
 \ifthenelse{\equal{\hsmasprache}{en}}
- {\hsmabiben \\ \vspace{0.5cm} \\ \hsmabiben}
- {\hsmabiben \\ \vspace{0.5cm} \\ \hsmabiben}
+ {\hsmabiben \\ \vspace{0.5cm}}
 
 
 % Erklärung
@@ -431,4 +428,4 @@ Eine Vervielfältigung und Veröffentlichung der Arbeit ohne ausdrückliche Gene
 \chapter*{Abstract}
 \ifthenelse{\equal{\hsmasprache}{de}}%
   {\subsubsection*{\hsmatitelde}\hsmaabstractde\subsubsection*{\hsmatitelen}\hsmaabstracten}
-  \todo[inline]{Write English abstract}
+Java and Node.js are two of the most popular languages for web oriented application. While Java is capable of multi-threading and CPU efficient, Node.js is single-threaded and uses an event-driver, non-blocking I/O model. The thesis conducted a series of stress test on the two technologies to compare how well they handle high loads and find the best strategy to scale them in Cloud Foundry. Both technologies show a quite high performance in the context of single transaction operations. It is safe to say they are both good candidates to implement applications of SAP business use case. Node.js is found excellent in CPU and memory utilization. With its single thread architecture, horizontal scaling is the best choice. Although Java is more memory-consuming, it has an outstanding CPU efficiency. It is best suitable for vertical scaling if it can make good use of all available CPU resource through proper optimization. 
