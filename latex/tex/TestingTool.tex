@@ -29,8 +29,13 @@ A simple load generator is implemented in this project as a node application. It
 \subsection{Features}
 \label{load generator}
 The majority of the load testing frameworks choose to generate a fixed number of total requests with given amount of concurrencies.  For example, a typical \textit{JMeter} test plan configures parameter \textit{Number of Threads} as concurrent virtual users. Through \textit{Loop Count}, the same concurrency is repeated so to reach the total number of requests. \textit{Hey} defines the total requests and concurrency degree then carry out the load generating accordingly. The same principle behind them is that the period of time during which the tests are carried out is not measured, only the response time of individual request. So many requests shall be sent either ended with successful transaction or landed in error because of timeout or other various reasons. \\
-The load generator used in this project produces load in two ways. One implementation also generates the load with a fixed number of requests. Another implementation brings about parallel requests in a fixed time frame, for example in one minute. The application will first pile up requests to a predefined parallel parameter. Whenever a request is successfully returned, a new one will be created to maintain the total parallel requests. Since the load testing is executed in an cloud environment where there are productive applications, define a relatively short time frame reduces influence on others. Therefore it is also used in the thesis most of the time.\\
-\missingfigure{Add action diagram for load generator}
+The load generator used in this project produces load in two ways. One implementation also generates the load with a fixed number of requests. Another implementation brings about parallel requests in a given fixed time frame, for example in one minute. The application will first pile up requests to a predefined parallel parameter. Whenever a request is successfully returned, a new one will be created to maintain the total parallel requests. Since the load testing is executed in an cloud environment where there are productive applications, define a relatively short time frame reduces influence on others. Therefore it is also used in the thesis most of the time. Figure \ref{load-generator} shows how load generator operates.\\
+ \begin{figure}[h]
+	\centering
+	\includegraphics[width=10cm]{load-generator}
+	\caption{Activity diagram of load generator}
+	\label{load-generator}
+\end{figure}
 The proxy server limitation is discussed in \ref{haproxy}. At the beginning the requests on the server was always brought about through establishing new connections. This has quickly hit the limit of what the HAProxy can handle. To workaround it, the started connections are kept alive and reused. Although HAProxy has a strange setting of cutting off the connection after a period of time, when the time expanse of test is not set to this limit, all things work perfectly. 
 
 \subsection{Limitations}
