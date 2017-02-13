@@ -1,8 +1,8 @@
 \chapter{Implementation of Applications}
-Store the current order of product and its meta information, find which shelf stores the current requested product, assign an idling logistic unit to pick up the itinerary ... I/O operations make up the majority of SAP business scenarios. 
- In the load test conducted in this paper, applications are built to realize a scenario: advertisements are published in a bulletin board and clients can browse through the items. 
+Store the current order of product and its meta information, find which shelf stores the current requested product, assign an idling logistic unit to pick up the itinerary ... I/O intensive operations make up the majority of SAP business scenarios. 
+ In the load test conducted in this paper, applications are built to realize such a scenario: advertisements are published in a bulletin board and clients can browse through the items. 
 
-The PostgreSQL backing service from Cloud Foundry is used as database. As the goal is to test how the application handles large amount of concurrency instead of the database efficiency, data will not be queried in high quantity or by complicated SQL actions in the test. 
+The PostgreSQL backing service from Cloud Foundry is used as the database. As the goal is to test how the application handles large amount of concurrency instead of the database efficiency, data will not be queried in high quantity or by complicated SQL actions in the test. 
 
 \section{Implementation Configuration}
 To bring Java and Node.js to a comparable level, the applications are implemented with minimum use of frameworks so that the overhead or any other influential factors on performance can be first taken off the table.
@@ -14,8 +14,8 @@ To bring Java and Node.js to a comparable level, the applications are implemente
  	\label{implementation}
  \end{figure}
 
-As table \ref{implementation} shows,  the implementation of both applications utilize no REST or any other kind of web framework. No ORM is applied. Response is sent as plain text to the client to avoid overhead brought by JSON serialization framework. \\
-Java application uses embedded Jetty server to handle plain HTTP requests because its lightweight. (* There is an even simpler built-in HTTP server from Oracle JRE. However, the build pack used in Cloud Foundry is Open Jdk JRE.)  Node.js application used its embedded web platform. The connection with database is plain JDBC for Java while Node.js uses a popular PostgreSQL library: PG. Since the data structure is intentionally kept simple: only one table and with no complex data types, the application without ORM doesn't bring about a lot of boiler plate code.  \\
+As table \ref{implementation} shows,  the implementation of both applications utilize no REST or any other kind of web framework. No ORM is applied. Response is sent as plain text to the client to avoid overhead brought by using framework to do JSON serialization/deserialization. \\
+Java application uses embedded Jetty server to handle plain HTTP requests because its lightweight. (* There is an even simpler built-in HTTP server from Oracle JRE. However, the build pack used in Cloud Foundry is OpenJDK JRE.)  Node.js application uses its embedded web platform. The connection with database is plain JDBC for Java while Node.js uses a popular PostgreSQL library: PG. Since the data structure is intentionally kept simple: only one table and with no complex data types, the application without ORM doesn't bring about a lot of boiler plate code.  \\
 
 \section{optimize the Java implementation}
 All possible attempts are made to bring about every potential performance of the application. Since there is no complex logic, the focus of optimization lays on the interaction between applications and database. In case of Java implementations, to set a optimal thread pool configuration is also investigated. \\
@@ -40,7 +40,7 @@ Thread pool size is also scrutinized for Java application and following the reco
 
 
 \section{Optimize the Node.js implementation}
-Node.js application basically faces the same configuration of connection pool in database. In the thesis, also three different libraries are tried out. Unlike Java libraries, there is some overlapping in regard to the Node.js libraries. In npm, one can find a number of PostgreSQL drivers. However, majority of them are built on the basis of one library: "node-postgres/pg" \citep{node-pg}. They are either wrappers or additional implementation with "promise" or "async/wait". For example, a great difference can not be derived from using of "node-postgres/pg" and "pg-promise" in the scenario in this thesis. The comprehensive research on framework benchmarking \citep{Benchmark} uses "Sequelize", which is also tried out in the thesis. However, it yields even a worse performance result because the object mapping costs indisputably computing time. In the end, the suggestion from "node-postgres/pg" writer is adopted to use "pg-native" which can boost a 20-30\% increase in parsing speed.\\
+Node.js application basically faces the same configuration of connection pool in database. In the thesis, also three different libraries are tried out. Unlike Java libraries, there is some overlapping with regard to the Node.js libraries. In npm, one can find a number of PostgreSQL drivers. However, majority of them are built on the basis of one library: "node-postgres/pg" \citep{node-pg}. They are either wrappers or additional implementation with "promise" or "async/wait". For example, a great difference can not be derived from using of "node-postgres/pg" and "pg-promise" in the scenario in this thesis. The comprehensive research on framework benchmarking \citep{Benchmark} uses "Sequelize", which is also tried out in the thesis. However, it yields even a worse performance result because the object mapping costs indisputably computing time. In the end, the suggestion from "node-postgres/pg" writer is adopted to use "pg-native" which can boost a 20-30\% increase in parsing speed.\\
 
 
 
