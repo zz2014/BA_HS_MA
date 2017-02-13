@@ -5,12 +5,12 @@ The monitoring on CPU usage shows that the Java application can utilize up to 25
 
 \section{Test with 100\% CPU consumption}
 In this test, fixed variable is average end-to-end response time which is kept under 10 ms  as a criteria for optimal performance. An additional bar is set on the CPU consumption which can not exceed 100\%. \\
-In the context of Cloud Foundry, it is impossible to assure an application using only one CPU. Although setting the memory of application can limit the CPU shares it can get, if other applications on the same node are idling, even the tiniest application can get all the 4 CPUs of the node. In terms of Java application, it is already much more memory consuming than node as shown in \ref{memory} hence it is unlikely only one CPU is given to the application. What one witnesses as a 70\% CPU is also very likely distributed in several CPUs.\\
-Figure\ref{cpu-100} shows the result of the test described above. It can be deducted from the graph, that Java has a better performance because the same percentage of CPU brings about more throughput in Java application than in Node.js. Since the CPU distribution is unclear, it can be accounted for that Java application is likely running with 4 or 2 very relaxed CPUs while Node.js is grabbing every bit of computing resource from that single CPU. This also leads to the reflection on the results of benchmarking from TechPower \citep{benchmark}. It has concluded that in terms of applications on cloud, Java is twice more efficient than Node.js. It is possible the CPU distribution is not taken into consideration at all. 
+In the context of Cloud Foundry, it is impossible to assure an application using only one CPU. Although setting the memory of application can limit the CPU shares it can get, if other applications on the same node are idling, even the tiniest application can get all the 4 CPUs of the node. In terms of Java application, it is already much more memory consuming than Node.js as shown in \ref{memory} hence it is unlikely only one CPU is given to the application. What one witnesses as a 70\% CPU is also very likely distributed across several CPUs.\\
+Figure \ref{cpu-100} shows the result of the test described above. It can be deducted from the graph, that Java has a better performance because the same percentage of CPU brings about more throughput in Java application than in Node.js. Since the CPU distribution is unclear, it can be accounted for that Java application is likely running with 4 or 2 very relaxed CPUs while Node.js is grabbing every bit of computing resource from that single CPU. We can clearly observe that the growing tendency in throughput from Node.js becomes weaker when the CPU usage approaches 100\%. This shows Node.js already operates on tight CPU resources and has to split part of its processing power for garbage collecting or other operations. This also leads to the reflection on the results of benchmarking from TechPower \citep{Benchmark}. It has concluded that in terms of applications on cloud, Java is twice more efficient than Node.js. It is possible the CPU distribution is not taken into consideration at all. 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{cpu-100}
+	\includegraphics[width=12cm]{cpu-100}
 	\caption{Compare throughput under 100 CPU consumption}
 	\label{cpu-100}
 \end{figure}
@@ -18,22 +18,29 @@ Figure\ref{cpu-100} shows the result of the test described above. It can be dedu
 
 \section{Test with real load}
 \subsection{Test configuration}
- In this round of test, applications are going to scale. How should it be determined whether two applications are equally scaled? As found out earlier, one Java instance utilizes more CPU while one Node.js employs only one, which leads the test to comparing vertical scaling in Java application with horizontal scaling in Node.js. This is still feasible if one can be sure Java always obtains the same amount of CPUs. However, figure \ref{java-cpu-limit} shows, that Java application never get to use all of its 4 CPUs. The database connection and router load are checked and they are not under stress at all.  An abnormal increase in memory is observed which indicates something suspicious in the application. The implementation is scrutinized, nevertheless, in the thesis no obvious cause is found. This leads to the realization that even though one Java instance gains 4 CPUs, it doesn't equal to four one-CPU Node instances. 
+ In this round of test, applications are going to scale. How should it be determined whether two applications are equally scaled? As found out earlier, one Java instance utilizes more CPU while one Node.js employs only one, which leads the test to comparing vertical scaling in Java application with horizontal scaling in Node.js. This is still feasible if one can be sure Java always obtains the same amount of CPUs. However, figure \ref{java-cpu-limit} shows, that Java application never get to use all of its 4 CPUs. The database connection and router load are checked and they are not under stress at all.  
  
  \begin{figure}[h]
  	\centering
- 	\includegraphics[width=10cm]{java-cpu-limit}
+ 	\includegraphics[width=12cm]{java-cpu-mem-2}
  	\caption{Limited CPU usage in Java application}
  	\label{java-cpu-limit}
  \end{figure}
+An abnormal increase in memory is observed in figure \ref{java-mem-surge} which indicates something suspicious in the application. The implementation is scrutinized, nevertheless, in the thesis no obvious cause is found. This leads to the realization that even though one Java instance gains 4 CPUs, it doesn't equal to four one-CPU Node.js instances. 
+ \begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{java-cpu-mem-1}
+	\caption{Abnormal surge in memory}
+	\label{java-mem-surge}
+\end{figure}
 Therefore the comparison in the thesis would not be restricted to one Java instance against multiple instances from Node.js. Load will be continuously added on to the application. Then the applications will scale when the response time shows a clear tendency to climb. At the end, an aggregated comparison will be made. \\
-Load is brought about through sending one request on application per instance of load generator. It is decided not to send parallel requests so as to guarantee each instance of the generator is simulating one end user. With each new round of test, 4 instances will be added to the existing running load generator. The maximum load generator instances will be 96 so that the limitation of database connection pool size will not be exceeded.\\
+Load is brought about through sending one request to the application per instance of load generator. It is decided not to send parallel requests so as to guarantee each instance of the generator is simulating one end user. With each new round of test, 4 instances will be added to the existing running load generator. The maximum load generator instances will be 96 so that the limit of database connection will not be exceeded.\\
 Java application will stop scaling when router has reached its limit (70\% load). For Node.js applications, the scaling stops when the CPU usage reaches the maximum CPU usage of Java applications tested previously.
  
 \subsection{Test result}
  \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{all-app-cpu}
+	\includegraphics[width=12cm]{all-app-cpu}
 	\caption{Throughput in relation to CPU}
 	\label{all-app-cpu}
 \end{figure}
@@ -47,7 +54,7 @@ In figure \ref{all-app-cpu}, it is illustrated the throughput in relation to the
 	\begin{footnotesize}
 		\begin{tabular}{l l l l l  }
 			\toprule
-			\textbf{Application  type} &\textbf{Instance Number} & \textbf{Available CPU \%} & \textbf{Maximum CPU\%}& \textbf{Utilzed CPU} }\\
+			\textbf{Application  type} &\textbf{Instance Number} & \textbf{Max CPU Usage\%} & \textbf{Max Available CPU\%}& \textbf{Utilization} }\\
 		\midrule
 		Java &1 	&	229	 & 400 & 57\% \\
 		Java &2	&	361 & 800& 45\% \\
@@ -67,7 +74,7 @@ In figure \ref{all-app-cpu}, it is illustrated the throughput in relation to the
 The same performance information of Node.js application is also depicted in figure \ref{all-app-cpu} in green lines. The test ends with 5 instances of Node.js application. It is when the CPU usage is in the same range of maximum CPU usage occurred in Java tests. As put together in table \ref{app-cpu-usage}, application shows a quite steady utilization of more than 90\% of the available CPU resources. It implies a horizontal scaling towards adding instances. If we draw a line down to the xx axis to see the correspondent throughput like \ref{cpu-node}, we can see the throughput scales also with adding instances. Since every instance makes full use of the CPU, the throughput scales also linear per CPU. \\
  \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{cpu-node}
+	\includegraphics[width=12cm]{cpu-node}
 	\caption{cpu efficiency of Node.js application}
 	\label{cpu-node}
 \end{figure}
@@ -75,7 +82,7 @@ The same performance information of Node.js application is also depicted in figu
 Although we observe an inefficient utilization of available CPU from Java application, we still want to know whether the applied computing resource is efficiently used. In figure \ref{cpu-java}, we also draw four lines down from 100\% to 400\% CPU usage respectively to show the throughput it handles. As presented in the chart, with increase of CPU, throughput scales almost linear.
  \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{cpu-java}
+	\includegraphics[width=12cm]{cpu-java}
 	\caption{cpu efficiency of 3 Java instances}
 	\label{cpu-java}
 \end{figure}
@@ -84,7 +91,7 @@ The last metric to check is memory consumption. As displayed in figure \ref{all-
 
  \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{all-app-mem}
+	\includegraphics[width=12cm]{all-app-mem}
 	\caption{Memory in relation to throughput}
 	\label{all-app-memory}
 \end{figure}
